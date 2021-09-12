@@ -35,6 +35,11 @@ class Api: ApiProtocol {
         request.httpBody = json ?? nil
         
         urlSession.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                completion(.error(error?.localizedDescription ?? "Network error"))
+                return
+            }
+            
             guard let result = data else { return }
             do {
                 let decoded = try JSONDecoder().decode(T.self, from: result)
@@ -68,7 +73,7 @@ class Api: ApiProtocol {
     }
 }
 
-enum ApiResponse<T: Codable> {
+enum ApiResponse<T: Decodable> {
     case success(T)
     case error(String)
 }

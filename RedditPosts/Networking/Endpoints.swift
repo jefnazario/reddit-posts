@@ -8,5 +8,5 @@
 import Foundation
 
 struct Endpoints {
-    static let Top: URL? = URL(string: "http://www.reddit.com/dev/api")
+    static let top: URL? = URL(string: "https://www.reddit.com/r/all/.json?limit=50")
 }
