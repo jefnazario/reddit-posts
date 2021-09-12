@@ -12,7 +12,7 @@ protocol PostsViewProtocol: AnyObject {
     func dismissPost(at indexPath: Int)
 }
 
-class PostsViewController: UIViewController {
+class PostsViewController: UITableViewController {
     // MARK: - Instantiate lazy var
     private lazy var api: ApiProtocol = {
         return Api()
@@ -30,23 +30,23 @@ class PostsViewController: UIViewController {
         return PostService(worker: self.worker)
     }()
     
-    private lazy var refreshControl: UIRefreshControl = {
-        let refresh = UIRefreshControl()
-        refresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresh.addTarget(self, action: #selector(reload), for: .valueChanged)
-        return refresh
-    }()
-    
     // MARK: - IBOutlet properties
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyMessage: UILabel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.addSubview(refreshControl)
-        
+        setupRefrshControl()
         service.getPosts()
+    }
+    
+    override func collapseSecondaryViewController(_ secondaryViewController: UIViewController, for splitViewController: UISplitViewController) {
+        
+    }
+    
+    func setupRefrshControl() {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl?.addTarget(self, action: #selector(reload), for: .valueChanged)
     }
     
     private func setupBarButtonItem() {
@@ -110,19 +110,19 @@ extension PostsViewController: PostsViewProtocol {
         DispatchQueue.main.async {
             self.tableView.isHidden = false
             self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             
             self.setupBarButtonItem()
         }
     }
 }
 
-extension PostsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension PostsViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.posts.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: presenter.cellIdentifier, for: indexPath) as? PostsTableViewCell else {
             return UITableViewCell()
         }
@@ -132,7 +132,7 @@ extension PostsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: presenter.cellIdentifier, for: indexPath) as? PostsTableViewCell else {
