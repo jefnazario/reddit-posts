@@ -29,6 +29,13 @@ class PostsViewController: UIViewController {
         return PostService(worker: self.worker)
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresh.addTarget(self, action: #selector(reload), for: .valueChanged)
+        return refresh
+    }()
+    
     // MARK: - IBOutlet properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyMessage: UILabel!
@@ -36,6 +43,7 @@ class PostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.addSubview(refreshControl)
         service.getPosts()
     }
     
@@ -48,6 +56,7 @@ extension PostsViewController: PostsViewProtocol {
     func reloadScreen() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
 }
