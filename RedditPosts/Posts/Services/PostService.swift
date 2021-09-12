@@ -8,11 +8,19 @@
 import Foundation
 
 protocol PostServiceProtocol: AnyObject {
-    func getPosts(completion: @escaping ([Post]) -> Void)
+    var posts: [Post] { get set }
+    func getPosts()
 }
 
 class PostService: PostServiceProtocol {
-    func getPosts(completion: @escaping ([Post]) -> Void) {
-        completion([])
+    var posts: [Post] = []
+    weak var worker: PostsWorkerProtrocol?
+    
+    init(worker: PostsWorkerProtrocol) {
+        self.worker = worker
+    }
+    
+    func getPosts() {
+        worker?.loadPosts()
     }
 }
