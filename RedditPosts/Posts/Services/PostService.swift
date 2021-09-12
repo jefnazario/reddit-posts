@@ -8,12 +8,10 @@
 import Foundation
 
 protocol PostServiceProtocol: AnyObject {
-    var posts: [Post] { get set }
     func getPosts()
 }
 
 class PostService: PostServiceProtocol {
-    var posts: [Post] = []
     weak var worker: PostsWorkerProtrocol?
     
     init(worker: PostsWorkerProtrocol) {

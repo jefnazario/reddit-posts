@@ -13,6 +13,8 @@ protocol PostsPresenterProtocol: AnyObject {
     
     func handleLoad(_ posts: [Post])
     func handleError(_ message: String)
+    func getItem(at indexPath: Int) -> Post
+    func updateReadedPost(at indexPath: Int)
 }
 
 class PostsPresenter: PostsPresenterProtocol {
@@ -33,5 +35,13 @@ class PostsPresenter: PostsPresenterProtocol {
     func handleLoad(_ posts: [Post]) {
         self.posts = posts
         view?.reloadScreen()
+    }
+    
+    func getItem(at indexPath: Int) -> Post {
+        return posts[indexPath]
+    }
+    
+    func updateReadedPost(at indexPath: Int) {
+        posts[indexPath].isReaded = true
     }
 }
