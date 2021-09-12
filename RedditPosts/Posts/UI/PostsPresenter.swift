@@ -15,6 +15,7 @@ protocol PostsPresenterProtocol: AnyObject {
     func handleError(_ message: String)
     func getItem(at indexPath: Int) -> Post
     func updateReadedPost(at indexPath: Int)
+    func dismissPost(at indexPath: Int)
 }
 
 class PostsPresenter: PostsPresenterProtocol {
@@ -43,5 +44,13 @@ class PostsPresenter: PostsPresenterProtocol {
     
     func updateReadedPost(at indexPath: Int) {
         posts[indexPath].isReaded = true
+    }
+    
+    func dismissPost(at indexPath: Int) {
+        guard indexPath > 0 else {
+            posts = []
+            return
+        }
+        _ = posts.remove(at: indexPath)
     }
 }

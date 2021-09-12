@@ -14,6 +14,11 @@ class PostsTableViewCell: UITableViewCell {
     @IBOutlet weak var textContent: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var readedSignal: UILabel!
+    @IBOutlet weak var dismissButton: UIButton!
+    
+    weak var postDelegate: PostsViewProtocol?
+    var postId: String = String()
+    var indexPath: Int = 0
     
     lazy var tapGesture: UITapGestureRecognizer = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(saveImage))
@@ -25,7 +30,10 @@ class PostsTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setup(_ post: Post) {
+    func setup(_ post: Post, at indexPath: Int, with delegate: PostsViewProtocol) {
+        self.postDelegate = delegate
+        self.indexPath = indexPath
+        
         let date = post.createdUtc?.intToDate()
         time.text = date?.timeAgoDisplay()
         commentsCount.text = post.numComments?.commentsLabel()
@@ -34,6 +42,8 @@ class PostsTableViewCell: UITableViewCell {
         
         readedSignal.isHidden = false
         if let postId = post.id {
+            self.postId = postId
+            
             let isReaded = UserDefaults.standard.bool(forKey: postId)
             readedSignal.isHidden = isReaded
             
@@ -57,5 +67,10 @@ class PostsTableViewCell: UITableViewCell {
     func updateIsReaded(_ post: Post) {
         guard let postId = post.id else { return }
         UserDefaults.standard.set(true, forKey: postId)
+    }
+    
+    // MARK: - IBActions
+    @IBAction func dismissPost() {
+        postDelegate?.dismissPost(at: indexPath)
     }
 }
