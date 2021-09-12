@@ -15,34 +15,14 @@ class PostsTableViewCell: UITableViewCell {
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var readedSignal: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    private lazy var tapGesture: UITapGestureRecognizer = {
+    lazy var tapGesture: UITapGestureRecognizer = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(saveImage))
         tap.numberOfTapsRequired = 1
         return tap
     }()
     
-    @objc private func saveImage() {
-        guard let image = self.postImage.image else { return }
-        
-        showsSaveShareMenu(with: "", for: "image") {
-            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
-        } shareClosure: {
-            self.showsActivityController(items: [image])
-        }
-    }
-    
-    //MARK: - Add image to Library
-    @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        guard error == nil else {
-            print("title: Save error, message: \(error!.localizedDescription)")
-            return
-        }
-        
-        print("title: Saved!, message: Your image has been saved to your photos.)")
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
     func setup(_ post: Post) {

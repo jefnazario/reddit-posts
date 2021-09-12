@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		23D670DE26EE42B100D0981C /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D670DD26EE42B100D0981C /* UIViewExtensions.swift */; };
+		23D670E026EE48C800D0981C /* PostsViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D670DF26EE48C800D0981C /* PostsViewCellExtensions.swift */; };
 		23F903CB26ECB4E400CB98BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F903CA26ECB4E400CB98BF /* AppDelegate.swift */; };
 		23F903D526ECB4E400CB98BF /* RedditPosts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23F903D326ECB4E400CB98BF /* RedditPosts.xcdatamodeld */; };
 		23F903D726ECB4E700CB98BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23F903D626ECB4E700CB98BF /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		23D670DD26EE42B100D0981C /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		23D670DF26EE48C800D0981C /* PostsViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewCellExtensions.swift; sourceTree = "<group>"; };
 		23F903C726ECB4E400CB98BF /* RedditPosts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditPosts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F903CA26ECB4E400CB98BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23F903D426ECB4E400CB98BF /* RedditPosts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RedditPosts.xcdatamodel; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				23F9040526ECC1E300CB98BF /* PostsViewController.swift */,
 				23F9041726ECDD2E00CB98BF /* PostsPresenter.swift */,
 				23F9041926EE050500CB98BF /* PostsTableViewCell.swift */,
+				23D670DF26EE48C800D0981C /* PostsViewCellExtensions.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				23F903D526ECB4E400CB98BF /* RedditPosts.xcdatamodeld in Sources */,
 				23F9041C26EE0D2900CB98BF /* UIImageViewExtensions.swift in Sources */,
 				23F9041E26EE100300CB98BF /* DateExtensions.swift in Sources */,
+				23D670E026EE48C800D0981C /* PostsViewCellExtensions.swift in Sources */,
 				23F903CB26ECB4E400CB98BF /* AppDelegate.swift in Sources */,
 				23D670DE26EE42B100D0981C /* UIViewExtensions.swift in Sources */,
 				23F9041126ECCAF300CB98BF /* HttpMethod.swift in Sources */,
