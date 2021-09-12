@@ -23,6 +23,10 @@
 		23F9041326ECCD9C00CB98BF /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9041226ECCD9C00CB98BF /* Endpoints.swift */; };
 		23F9041626ECDB3400CB98BF /* CodableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9041526ECDB3400CB98BF /* CodableExtensions.swift */; };
 		23F9041826ECDD2E00CB98BF /* PostsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9041726ECDD2E00CB98BF /* PostsPresenter.swift */; };
+		23F9041A26EE050500CB98BF /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9041926EE050500CB98BF /* PostsTableViewCell.swift */; };
+		23F9041C26EE0D2900CB98BF /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9041B26EE0D2900CB98BF /* UIImageViewExtensions.swift */; };
+		23F9041E26EE100300CB98BF /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9041D26EE100300CB98BF /* DateExtensions.swift */; };
+		23F9042026EE102E00CB98BF /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9041F26EE102E00CB98BF /* IntExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,10 @@
 		23F9041226ECCD9C00CB98BF /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		23F9041526ECDB3400CB98BF /* CodableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableExtensions.swift; sourceTree = "<group>"; };
 		23F9041726ECDD2E00CB98BF /* PostsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsPresenter.swift; sourceTree = "<group>"; };
+		23F9041926EE050500CB98BF /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		23F9041B26EE0D2900CB98BF /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
+		23F9041D26EE100300CB98BF /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		23F9041F26EE102E00CB98BF /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +202,7 @@
 				23F9040326ECC19800CB98BF /* PostsStoryboard.storyboard */,
 				23F9040526ECC1E300CB98BF /* PostsViewController.swift */,
 				23F9041726ECDD2E00CB98BF /* PostsPresenter.swift */,
+				23F9041926EE050500CB98BF /* PostsTableViewCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -212,6 +221,9 @@
 			isa = PBXGroup;
 			children = (
 				23F9041526ECDB3400CB98BF /* CodableExtensions.swift */,
+				23F9041B26EE0D2900CB98BF /* UIImageViewExtensions.swift */,
+				23F9041D26EE100300CB98BF /* DateExtensions.swift */,
+				23F9041F26EE102E00CB98BF /* IntExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -346,11 +358,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F9042026EE102E00CB98BF /* IntExtensions.swift in Sources */,
 				23F9040626ECC1E300CB98BF /* PostsViewController.swift in Sources */,
 				23F9040C26ECC86D00CB98BF /* PostService.swift in Sources */,
 				23F9041626ECDB3400CB98BF /* CodableExtensions.swift in Sources */,
+				23F9041A26EE050500CB98BF /* PostsTableViewCell.swift in Sources */,
 				23F9041826ECDD2E00CB98BF /* PostsPresenter.swift in Sources */,
 				23F903D526ECB4E400CB98BF /* RedditPosts.xcdatamodeld in Sources */,
+				23F9041C26EE0D2900CB98BF /* UIImageViewExtensions.swift in Sources */,
+				23F9041E26EE100300CB98BF /* DateExtensions.swift in Sources */,
 				23F903CB26ECB4E400CB98BF /* AppDelegate.swift in Sources */,
 				23F9041126ECCAF300CB98BF /* HttpMethod.swift in Sources */,
 				23F9040826ECC22F00CB98BF /* PostsWorker.swift in Sources */,

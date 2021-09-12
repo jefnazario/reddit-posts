@@ -58,9 +58,27 @@ extension PostsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: presenter.cellIdentifier, for: indexPath)
-        cell.textLabel?.text = presenter.posts[indexPath.row].title
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: presenter.cellIdentifier, for: indexPath) as? PostsTableViewCell else {
+            return UITableViewCell()
+        }
+        let item = presenter.getItem(at: indexPath.row)
+        cell.setup(item)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: presenter.cellIdentifier, for: indexPath) as? PostsTableViewCell else {
+            return
+        }
+        
+        let item = presenter.getItem(at: indexPath.row)
+        cell.updateIsReaded(item)
+        
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
     }
 }
