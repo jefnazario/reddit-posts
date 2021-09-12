@@ -77,6 +77,20 @@ class PostsViewController: UIViewController {
     @objc private func reload() {
         service.getPosts()
     }
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let data = try? JSONEncoder().encode(presenter.posts) {
+            coder.encode(data)
+            super.encodeRestorableState(with: coder)
+        }
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        if let data = coder.decodeData(), let posts = try? JSONDecoder().decode([Post].self, from: data) {
+            presenter.posts = posts
+        }
+        super.decodeRestorableState(with: coder)
+    }
 }
 
 extension PostsViewController: PostsViewProtocol {
