@@ -31,4 +31,14 @@ extension UIView {
           topController.present(menu, animated: true)
         }
     }
+    
+    func showsActivityController(items: [Any]) {
+        let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+          while let presentedViewController = topController.presentedViewController {
+            topController = presentedViewController
+          }
+          topController.present(activityController, animated: true)
+        }
+    }
 }

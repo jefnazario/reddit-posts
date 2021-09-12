@@ -26,11 +26,12 @@ class PostsTableViewCell: UITableViewCell {
     }()
     
     @objc private func saveImage() {
+        guard let image = self.postImage.image else { return }
+        
         showsSaveShareMenu(with: "", for: "image") {
-            guard let image = self.postImage.image else { return }
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
         } shareClosure: {
-            
+            self.showsActivityController(items: [image])
         }
     }
     
