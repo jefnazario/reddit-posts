@@ -19,6 +19,31 @@ class PostsTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(saveImage))
+        tap.numberOfTapsRequired = 1
+        return tap
+    }()
+    
+    @objc private func saveImage() {
+        showsSaveShareMenu(with: "", for: "image") {
+            guard let image = self.postImage.image else { return }
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
+        } shareClosure: {
+            
+        }
+    }
+    
+    //MARK: - Add image to Library
+    @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        guard error == nil else {
+            print("title: Save error, message: \(error!.localizedDescription)")
+            return
+        }
+        
+        print("title: Saved!, message: Your image has been saved to your photos.)")
+    }
+    
     func setup(_ post: Post) {
         let date = post.createdUtc?.intToDate()
         time.text = date?.timeAgoDisplay()
@@ -43,6 +68,8 @@ class PostsTableViewCell: UITableViewCell {
         }
         
         postImage.isHidden = false
+        postImage.isUserInteractionEnabled = true
+        postImage.addGestureRecognizer(tapGesture)
         postImage.load(from: thumbUrl)
     }
     

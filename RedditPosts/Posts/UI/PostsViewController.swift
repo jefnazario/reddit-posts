@@ -87,7 +87,7 @@ extension PostsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.updateIsReaded(item)
         
         tableView.beginUpdates()
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.reloadRows(at: [indexPath], with: .none)
         tableView.endUpdates()
     }
 }
