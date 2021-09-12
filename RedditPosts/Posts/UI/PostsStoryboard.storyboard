@@ -61,6 +61,9 @@
                                                             <state key="normal" title="Dismiss">
                                                                 <color key="titleColor" red="1" green="0.29200662158093116" blue="0.18339787697305485" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="dismissPost" destination="kFr-MH-sph" eventType="touchUpInside" id="DNt-dZ-bYv"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -125,6 +128,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="commentsCount" destination="gjC-wV-BN0" id="zRI-YR-AJV"/>
+                                            <outlet property="dismissButton" destination="sq4-gq-uAF" id="7No-CR-k5J"/>
                                             <outlet property="postImage" destination="ObE-WX-hrN" id="EyZ-lU-LNb"/>
                                             <outlet property="readedSignal" destination="WPC-dN-YCE" id="49k-wp-YB5"/>
                                             <outlet property="textContent" destination="8ak-IF-g75" id="zHy-PK-f6u"/>
