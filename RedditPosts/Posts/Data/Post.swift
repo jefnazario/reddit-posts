@@ -9,26 +9,26 @@ import Foundation
 import CoreData
 
 // MARK: - Reddit
-struct Reddit: Decodable {
+struct Reddit: Codable {
     let kind: String?
     let data: RedditData?
 }
 
 // MARK: - RedditData
-struct RedditData: Decodable {
+struct RedditData: Codable {
     let after: String?
     let dist: Int?
     let children: [Child]?
 }
 
 // MARK: - Child
-struct Child: Decodable {
+struct Child: Codable {
     let kind: String?
     let data: Post
 }
 
 // MARK: - Child data: Post
-struct Post: Decodable {
+struct Post: Codable {
     let title: String?
     let author: String?
     let createdUtc: Int?
@@ -52,7 +52,7 @@ struct Post: Decodable {
 }
 
 // MARK: - Media
-struct Media: Decodable {
+struct Media: Codable {
     let oembed: Oembed?
     let type: String?
 
@@ -62,7 +62,7 @@ struct Media: Decodable {
 }
 
 // MARK: - Oembed
-struct Oembed: Decodable {
+struct Oembed: Codable {
     let providerURL: String
     let url: String?
     let html, authorName: String
