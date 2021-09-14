@@ -12,7 +12,7 @@ protocol PostsViewProtocol: AnyObject {
     func dismissPost(at indexPath: Int)
 }
 
-class PostsViewController: UITableViewController {
+class PostsViewController: UITableViewController, StoryboardLoadable {
     // MARK: - Instantiate lazy var
     private lazy var api: ApiProtocol = {
         return Api()
@@ -35,15 +35,11 @@ class PostsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRefrshControl()
+        setupRefreshControl()
         service.getPosts()
     }
     
-    override func collapseSecondaryViewController(_ secondaryViewController: UIViewController, for splitViewController: UISplitViewController) {
-        
-    }
-    
-    func setupRefrshControl() {
+    func setupRefreshControl() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl?.addTarget(self, action: #selector(reload), for: .valueChanged)
@@ -115,6 +111,19 @@ extension PostsViewController: PostsViewProtocol {
             self.setupBarButtonItem()
         }
     }
+    
+    func navigateToDetail(_ post: Post) {
+        if let nav = (self.splitViewController?.viewControllers.last as? UINavigationController),
+           let detail = (nav.topViewController as? PostDetailViewController) {
+            detail.post = post
+            detail.tableView?.reloadData()
+            self.splitViewController?.hide(.primary)
+        } else {
+            let detail = UIStoryboard.loadViewController(withStoryboardName: "PostsStoryboard") as PostDetailViewController
+            detail.post = post
+            self.navigationController?.pushViewController(detail, animated: true)
+        }
+    }
 }
 
 extension PostsViewController {
@@ -145,5 +154,11 @@ extension PostsViewController {
         tableView.beginUpdates()
         tableView.reloadRows(at: [indexPath], with: .none)
         tableView.endUpdates()
+        
+        navigateToDetail(item)
     }
+}
+
+extension PostsViewController: UISplitViewControllerDelegate {
+    
 }

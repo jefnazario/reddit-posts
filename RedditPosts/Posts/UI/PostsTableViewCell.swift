@@ -30,7 +30,7 @@ class PostsTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setup(_ post: Post, at indexPath: Int, with delegate: PostsViewProtocol) {
+    func setup(_ post: Post, at indexPath: Int, with delegate: PostsViewProtocol? = nil) {
         self.postDelegate = delegate
         self.indexPath = indexPath
         
@@ -62,6 +62,11 @@ class PostsTableViewCell: UITableViewCell {
         postImage.isUserInteractionEnabled = true
         postImage.addGestureRecognizer(tapGesture)
         postImage.load(from: thumbUrl)
+    }
+    
+    func customSetupForDetail() {
+        self.accessoryType = .none
+        self.dismissButton.isHidden = true
     }
     
     func updateIsReaded(_ post: Post) {

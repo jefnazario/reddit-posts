@@ -24,7 +24,7 @@ extension UIView {
         menu.addAction(share)
         menu.addAction(cancel)
         
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+        if var topController = UIApplication.shared.windows[0].rootViewController {
           while let presentedViewController = topController.presentedViewController {
             topController = presentedViewController
           }
@@ -34,7 +34,7 @@ extension UIView {
     
     func showsActivityController(items: [Any]) {
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+        if var topController = UIApplication.shared.windows[0].rootViewController {
           while let presentedViewController = topController.presentedViewController {
             topController = presentedViewController
           }
